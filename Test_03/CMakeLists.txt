@@ -7,12 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 option(USE_MYMATH "Use tutorial provided math implementation" ON)
 
-# IN THE CMAKE TUTORIAL DOCUMENT THIS PART NOT EXIST, I ENCONTER IN THE STACKOVERFLOW 
-# https://stackoverflow.com/questions/24663333/cmake-integrating-options-into-c-source-files/24663856
-# A WAY TO MAKE THE OPTION WORKS. 
-# WHAT HAPPEND IS THAT THE OPTION MACRO NOT WORKS INSIDE THE C++ CODE. 
-# THE CODE #ifdef USE_MYMATH
-#          
 
 if(USE_MYMATH)
 	message(STATUS "USE_MYMATH")
@@ -35,4 +29,9 @@ target_link_libraries(Mysqrt PUBLIC ${EXTRA_LIBS})
 target_include_directories(Mysqrt PUBLIC
 			   "${PROJECT_BINARY_DIR}"
 			   )
+
+
+install(TARGETS Mysqrt DESTINATION "${PROJECT_BINARY_DIR}/bin")
+install(FILES "${PROJECT_BINARY_DIR}/MysqrtConfig.h"
+		DESTINATION "${PROJECT_BINARY_DIR}/include")
 
